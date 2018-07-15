@@ -13,7 +13,7 @@ class PieceTest < Minitest::Test
   def test_attributes
     piece = Piece.new("X", "A", 1)
     
-    assert_equal "X", piece.name
+    assert_equal "X", piece.player
     assert_equal "A", piece.column
     assert_equal 1, piece.move 
   end 
