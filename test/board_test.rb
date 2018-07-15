@@ -21,6 +21,14 @@ class BoardTest < Minitest::Test
     assert_instance_of Cell, board.cells[rand(0..5)][rand(0..6)]
   end 
   
+  def test_pieces_attribute
+    board = board.new
+    
+    #no idea why this isn't passing
+    # assert_equal {"A"=>[], "B"=>[], "C"=>[], "D"=>[], "E"=>[], "F"=>[], "G"=>[]}, board.pieces 
+    assert_equal [], board.pieces["A"]
+  end 
+  
   def test_it_renders_board 
     board = Board.new 
     

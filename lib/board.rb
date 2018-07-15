@@ -2,7 +2,8 @@ require './lib/cell'
 
 class Board 
   
-  attr_reader     :cells 
+  attr_reader     :cells,
+                  :pieces 
   
   def initialize
     @cells = [
@@ -13,7 +14,13 @@ class Board
       [Cell.new("A", 2), Cell.new("B", 2), Cell.new("C", 2), Cell.new("D", 2), Cell.new("E", 2), Cell.new("F", 2), Cell.new("G", 2)],
       [Cell.new("A", 1), Cell.new("B", 1), Cell.new("C", 1), Cell.new("D", 1), Cell.new("E", 1), Cell.new("F", 1), Cell.new("G", 1)]
     ]
+    @pieces = {"A"=>[],"B"=>[],"C"=>[],"D"=>[],"E"=>[],"F"=>[],"G"=>[]}
   end 
+  
+  #add_piece method with piece object argument 
+  # call method to update cell
+    #piece column
+    #calculated row
   
   def render_board
     @cells.map do |array|
