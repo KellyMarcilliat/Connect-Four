@@ -1,12 +1,10 @@
 class Piece
   
   attr_reader     :player,
-                  :column,
-                  :move
+                  :column
                   
-  def initialize(player, column, move)
+  def initialize(player, column)
     @player = player
     @column = column
-    @move = move 
   end 
 end 
