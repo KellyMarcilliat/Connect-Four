@@ -21,5 +21,11 @@ class BoardTest < Minitest::Test
     assert_instance_of Cell, board.cells[rand(0..5)][rand(0..6)]
   end 
   
+  def test_it_renders_board 
+    board = Board.new 
+    
+    assert_equal [".", ".", ".", ".",".", ".", "."], board.render_board[rand(0..5)] 
+  end 
+  
   
 end 

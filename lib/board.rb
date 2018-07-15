@@ -14,4 +14,23 @@ class Board
       [Cell.new("A", 1), Cell.new("B", 1), Cell.new("C", 1), Cell.new("D", 1), Cell.new("E", 1), Cell.new("F", 1), Cell.new("G", 1)]
     ]
   end 
+  
+  def render_board
+    @cells.map do |array|
+      array.map do |cell|
+        cell.value
+      end 
+    end 
+  end 
+  
+  def print_board
+    render_board
+    puts "ABCDEFG"
+    puts "#{render_board[0].join}"
+    puts "#{render_board[1].join}"
+    puts "#{render_board[2].join}"
+    puts "#{render_board[3].join}"
+    puts "#{render_board[4].join}"
+    puts "#{render_board[5].join}"
+  end 
 end 
