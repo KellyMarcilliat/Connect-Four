@@ -25,15 +25,19 @@ class Board
   # calculates negative integer for use as index in @cells 
   # helper to find_cell method
   def find_cells_array(piece_object)
-    -(pieces[piece_object.column].count)
+    guesses_in_column = (pieces[piece_object.column].count)
+    if guesses_in_column > 0
+      guesses_in_column *= -1
+    else 
+      5
+    end 
   end 
   
   # helper for update_cell method
   def find_cell(piece_object)
     @cells[find_cells_array(piece_object)].find do |element|
       element.column == piece_object.column
-      # element.value = piece_object.player
-    end  
+    end 
   end 
   
   def update_cell(piece_object)
