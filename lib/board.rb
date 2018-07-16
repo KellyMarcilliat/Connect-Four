@@ -22,17 +22,23 @@ class Board
     @pieces[piece_object.column] << piece_object
   end 
   
+  # calculates negative integer for use as index in @cells 
+  # helper to find_cell method
   def find_cells_array(piece_object)
     -(pieces[piece_object.column].count)
   end 
   
-  # call method to update cell
-  # def update_cell(piece_object)
-    # row to update: -(board.pieces[piece_2.column].count) = -2
-  #   @cells
-    #= piece_object.player
-    #piece column
-    #calculated row
+  # helper for update_cell method
+  def find_cell(piece_object)
+    @cells[find_cells_array(piece_object)].find do |element|
+      element.column == piece_object.column
+      # element.value = piece_object.player
+    end  
+  end 
+  
+  def update_cell(piece_object)
+    find_cell(piece_object).value = piece_object.player
+  end 
   
   def render_board
     @cells.map do |array|

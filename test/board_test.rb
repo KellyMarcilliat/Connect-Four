@@ -50,16 +50,26 @@ class BoardTest < Minitest::Test
     assert_equal -1, board.find_cells_array(piece_1)
   end 
   
-  # def test_new_piece_updates_cell 
-  #   board = Board.new 
-  #   piece_1 = Piece.new("X", "C")
-  # 
-  #   assert_equal ".", board.cells[5][0]
-  # 
-  #   board.update_cell(piece_1)
-  # 
-  #   assert_equal "X", board.cells[5][0].value
-  # end 
+  def test_new_piece_updates_cell 
+    board = Board.new 
+    piece_1 = Piece.new("X", "C")
+    piece_2 = Piece.new("O", "C")
+  
+    assert_equal ".", board.cells[5][0].value
+    assert_equal ".", board.cells[5][2].value
+    assert_equal ".", board.cells[4][0].value
+  
+    board.add_piece(piece_1)
+    board.find_cell(piece_1)
+    board.update_cell(piece_1)
+    board.add_piece(piece_2)
+    board.find_cell(piece_2)
+    board.update_cell(piece_2)
+    
+    assert_equal ".", board.cells[5][0].value
+    assert_equal "X", board.cells[5][2].value
+    assert_equal "O", board.cells[4][2].value
+  end 
   
   def test_it_renders_board 
     board = Board.new 
