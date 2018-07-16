@@ -22,8 +22,13 @@ class Board
     @pieces[piece_object.column] << piece_object
   end 
   
+  def find_cells_array(piece_object)
+    -(pieces[piece_object.column].count)
+  end 
+  
   # call method to update cell
   # def update_cell(piece_object)
+    # row to update: -(board.pieces[piece_2.column].count) = -2
   #   @cells
     #= piece_object.player
     #piece column
