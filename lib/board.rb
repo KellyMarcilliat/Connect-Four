@@ -2,7 +2,8 @@ require './lib/cell'
 
 class Board 
   
-  attr_reader     :cells 
+  attr_reader     :cells,
+                  :pieces 
   
   def initialize
     @cells = [
@@ -13,6 +14,34 @@ class Board
       [Cell.new("A", 2), Cell.new("B", 2), Cell.new("C", 2), Cell.new("D", 2), Cell.new("E", 2), Cell.new("F", 2), Cell.new("G", 2)],
       [Cell.new("A", 1), Cell.new("B", 1), Cell.new("C", 1), Cell.new("D", 1), Cell.new("E", 1), Cell.new("F", 1), Cell.new("G", 1)]
     ]
+    @pieces = {"A"=>[],"B"=>[],"C"=>[],"D"=>[],"E"=>[],"F"=>[],"G"=>[]}
+  end 
+  
+  #add_piece method with piece object argument 
+  def add_piece(piece_object)
+    @pieces[piece_object.column] << piece_object
+  end 
+  
+  # calculates negative integer for use as index in @cells 
+  # helper to find_cell method
+  def find_cells_array(piece_object)
+    guesses_in_column = (pieces[piece_object.column].count)
+    if guesses_in_column > 0
+      guesses_in_column *= -1
+    else 
+      5
+    end 
+  end 
+  
+  # helper for update_cell method
+  def find_cell(piece_object)
+    @cells[find_cells_array(piece_object)].find do |element|
+      element.column == piece_object.column
+    end 
+  end 
+  
+  def update_cell(piece_object)
+    find_cell(piece_object).value = piece_object.player
   end 
   
   def render_board
