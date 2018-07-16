@@ -18,7 +18,14 @@ class Board
   end 
   
   #add_piece method with piece object argument 
+  def add_piece(piece_object)
+    @pieces[piece_object.column] << piece_object
+  end 
+  
   # call method to update cell
+  # def update_cell(piece_object)
+  #   @cells
+    #= piece_object.player
     #piece column
     #calculated row
   

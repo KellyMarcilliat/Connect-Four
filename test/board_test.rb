@@ -2,6 +2,7 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/board'
 require './lib/cell'
+require './lib/piece'
 require 'pry'
 
 class BoardTest < Minitest::Test 
@@ -22,11 +23,34 @@ class BoardTest < Minitest::Test
   end 
   
   def test_pieces_attribute
-    board = board.new
+    board = Board.new
     
-    #no idea why this isn't passing
+    # no idea why this assertion isn't passing
     # assert_equal {"A"=>[], "B"=>[], "C"=>[], "D"=>[], "E"=>[], "F"=>[], "G"=>[]}, board.pieces 
     assert_equal [], board.pieces["A"]
+  end 
+  
+  def test_it_adds_pieces_to_correct_key
+    board = Board.new
+    piece_1 = Piece.new("X", "C")
+    piece_2 = Piece.new("0", "C")
+    
+    assert_equal [], board.pieces["C"]
+    
+    board.add_piece(piece_1)
+    board.add_piece(piece_2)
+    assert_equal [piece_1, piece_2], board.pieces["C"] 
+  end 
+  
+  def test_new_piece_updates_cell 
+    board = Board.new 
+    piece_1 = Piece.new("X", "C")
+    
+    assert_equal ".", board.cells[5][0]
+    
+    board.update_cell(piece_1)
+    
+    assert_equal "X", board.cells[5][0].value
   end 
   
   def test_it_renders_board 
