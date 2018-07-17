@@ -85,6 +85,24 @@ class BoardTest < Minitest::Test
     assert_equal "O", board.cells[4][2].value
   end 
   
+  def test_it_joins_cell_values_by_row
+    board = Board.new 
+    
+    assert_equal "..........................................", board.join_cell_values_by_row 
+    assert_equal 42, board.join_cell_values_by_row.length
+  end 
+  
+  def test_it_finds_horizontal_win
+    board = Board.new 
+    
+    assert_equal "COMPUTER WINS!", board.find_horizontal_win("..OOOO.")
+    assert_equal "COMPUTER WINS!", board.find_horizontal_win(".OOOO..")
+    assert_equal "YOU WIN!", board.find_horizontal_win(".XXXX..")
+    assert_equal "YOU WIN!", board.find_horizontal_win("...XXXX")
+    assert_nil board.find_horizontal_win("XOXOXOX")
+    assert_nil board.find_horizontal_win(".......")
+  end 
+  
   def test_it_renders_board 
     board = Board.new 
     
