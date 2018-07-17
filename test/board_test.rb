@@ -85,6 +85,32 @@ class BoardTest < Minitest::Test
     assert_equal "O", board.cells[4][2].value
   end 
   
+  def test_it_joins_cell_values_by_row
+    board = Board.new 
+    
+    assert_equal "..........................................", board.join_cell_values_by_row 
+    assert_equal 42, board.join_cell_values_by_row.length
+  end 
+  
+  def test_it_evaluates_for_win 
+    board = Board.new 
+    
+    assert_equal "COMPUTER WINS!", board.evaluate_for_win(".........OOOO............")
+    assert_equal "YOU WIN!", board.evaluate_for_win("..........XXXX........") 
+    assert_nil board.evaluate_for_win("...................")
+  end 
+  
+  def test_it_finds_win_in_string
+    board = Board.new 
+    
+    assert_equal "COMPUTER WINS!", board.find_win_in_string("..OOOO.")
+    assert_equal "COMPUTER WINS!", board.find_win_in_string(".OOOO..")
+    assert_equal "YOU WIN!", board.find_win_in_string(".XXXX..")
+    assert_equal "YOU WIN!", board.find_win_in_string("...XXXX")
+    assert_nil board.find_win_in_string("XOXOXOX")
+    assert_nil board.find_win_in_string(".......")
+  end 
+  
   def test_it_renders_board 
     board = Board.new 
     

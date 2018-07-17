@@ -44,6 +44,32 @@ class Board
     find_cell(piece_object).value = piece_object.player
   end 
   
+  def join_cell_values_by_row
+    @cells.map do |array|
+      array.map do |cell|
+        cell.value
+      end 
+    end.join 
+  end 
+  
+  def evaluate_for_win(cell_value_string)
+    until cell_value_string.length == 0 do 
+      slice = cell_value_string.slice!(0..6)
+      if find_win_in_string(slice) != nil 
+        return find_win_in_string(slice)
+      end 
+    end
+  end 
+    
+  
+  def find_win_in_string(sliced_string)
+    if sliced_string.include?("OOOO")
+      "COMPUTER WINS!"
+    elsif sliced_string.include?("XXXX")
+      "YOU WIN!"
+    end 
+  end 
+  
   def render_board
     @cells.map do |array|
       array.map do |cell|
