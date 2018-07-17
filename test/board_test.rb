@@ -23,8 +23,8 @@ class BoardTest < Minitest::Test
   end 
   
   def test_pieces_attribute
-    board = Board.new
-    
+    board = Board.new 
+    # binding.pry 
     # no idea why this assertion isn't passing
     # assert_equal {"A"=>[], "B"=>[], "C"=>[], "D"=>[], "E"=>[], "F"=>[], "G"=>[]}, board.pieces 
     assert_equal [], board.pieces["A"]
