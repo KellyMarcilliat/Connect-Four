@@ -52,7 +52,17 @@ class Board
     end.join 
   end 
   
-  def find_horizontal_win(sliced_string)
+  def evaluate_for_win(cell_value_string)
+    until cell_value_string.length == 0 do 
+      slice = cell_value_string.slice!(0..6)
+      if find_win_in_string(slice) != nil 
+        return find_win_in_string(slice)
+      end 
+    end
+  end 
+    
+  
+  def find_win_in_string(sliced_string)
     if sliced_string.include?("OOOO")
       "COMPUTER WINS!"
     elsif sliced_string.include?("XXXX")
