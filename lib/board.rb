@@ -3,7 +3,8 @@ require './lib/cell'
 class Board 
   
   attr_reader     :cells,
-                  :pieces 
+                  :pieces,
+                  :diagonals
   
   def initialize
     @cells = [
@@ -14,7 +15,9 @@ class Board
       [Cell.new("A", 2), Cell.new("B", 2), Cell.new("C", 2), Cell.new("D", 2), Cell.new("E", 2), Cell.new("F", 2), Cell.new("G", 2)],
       [Cell.new("A", 1), Cell.new("B", 1), Cell.new("C", 1), Cell.new("D", 1), Cell.new("E", 1), Cell.new("F", 1), Cell.new("G", 1)]
     ]
+    
     @pieces = {"A"=>[],"B"=>[],"C"=>[],"D"=>[],"E"=>[],"F"=>[],"G"=>[]}
+    
     @diagonals = [
       [cells[2][0].value, cells[3][1].value, cells[4][2].value, cells[5][3].value],
       [cells[1][0].value, cells[2][1].value, cells[3][2].value, cells[4][3].value, cells[5][4].value], 
@@ -58,8 +61,8 @@ class Board
     find_cell(piece_object).value = piece_object.player
   end 
   
-  def join_cell_values_by_row
-    @cells.map do |array|
+  def join_cell_values_by_row(cells)
+    cells.map do |array|
       array.map do |cell|
         cell.value
       end 
@@ -75,13 +78,16 @@ class Board
     end
   end 
   
-  def evaluate_for_diagonal_win
+  def evaluate_for_diagonal_win(two_d_array)
+    two_d_array.map do |array|
+      find_win_in_string(array.join)
+    end.join
   end 
 
-  def find_win_in_string(sliced_string)
-    if sliced_string.include?("OOOO")
+  def find_win_in_string(string)
+    if string.include?("OOOO")
       "COMPUTER WINS!"
-    elsif sliced_string.include?("XXXX")
+    elsif string.include?("XXXX")
       "YOU WIN!"
     end 
   end 

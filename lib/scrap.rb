@@ -25,7 +25,7 @@ diagonals = [
   [cells[5][2].value, cells[4][3].value, cells[3][4].value, cells[2][5].value, cells[1][6].value],
   [cells[5][3].value, cells[4][4].value, cells[3][5].value, cells[2][6].value]
 ]
-p diagonals
+p diagonals[1].join
 
 # row = 0
 # column = 0
