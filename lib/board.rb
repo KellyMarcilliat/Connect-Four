@@ -15,6 +15,20 @@ class Board
       [Cell.new("A", 1), Cell.new("B", 1), Cell.new("C", 1), Cell.new("D", 1), Cell.new("E", 1), Cell.new("F", 1), Cell.new("G", 1)]
     ]
     @pieces = {"A"=>[],"B"=>[],"C"=>[],"D"=>[],"E"=>[],"F"=>[],"G"=>[]}
+    @diagonals = [
+      [cells[2][0].value, cells[3][1].value, cells[4][2].value, cells[5][3].value],
+      [cells[1][0].value, cells[2][1].value, cells[3][2].value, cells[4][3].value, cells[5][4].value], 
+      [cells[0][0].value, cells[1][1].value, cells[2][2].value, cells[3][3].value, cells[4][4].value, cells[5][5].value], 
+      [cells[0][1].value, cells[1][2].value, cells[2][3].value, cells[3][4].value, cells[4][5].value, cells[5][6].value],
+      [cells[0][2].value, cells[1][3].value, cells[2][4].value, cells[3][5].value, cells[4][6].value],
+      [cells[0][3].value, cells[1][4].value, cells[2][5].value, cells[3][6].value],
+      [cells[3][0].value, cells[2][1].value, cells[1][2].value, cells[0][3].value],
+      [cells[4][0].value, cells[3][1].value, cells[2][2].value, cells[1][3].value, cells[0][4].value],
+      [cells[5][0].value, cells[4][1].value, cells[3][2].value, cells[2][3].value, cells[1][4].value, cells[0][5].value],
+      [cells[5][1].value, cells[4][2].value, cells[3][3].value, cells[2][4].value, cells[1][5].value, cells[0][6].value],
+      [cells[5][2].value, cells[4][3].value, cells[3][4].value, cells[2][5].value, cells[1][6].value],
+      [cells[5][3].value, cells[4][4].value, cells[3][5].value, cells[2][6].value]
+    ]
   end 
   
   #add_piece method with piece object argument 
