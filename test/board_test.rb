@@ -88,16 +88,24 @@ class BoardTest < Minitest::Test
   def test_it_joins_cell_values_by_row
     board = Board.new 
     
-    assert_equal "..........................................", board.join_cell_values_by_row 
-    assert_equal 42, board.join_cell_values_by_row.length
+    assert_equal "..........................................", board.join_cell_values_by_row(board.cells) 
+    assert_equal 42, board.join_cell_values_by_row(board.cells).length
   end 
   
-  def test_it_evaluates_for_win 
+  def test_it_evaluates_for_horizontal_or_vertical_win 
     board = Board.new 
     
-    assert_equal "COMPUTER WINS!", board.evaluate_for_win(".........OOOO............")
-    assert_equal "YOU WIN!", board.evaluate_for_win("..........XXXX........") 
-    assert_nil board.evaluate_for_win("...................")
+    assert_equal "COMPUTER WINS!", board.evaluate_for_hv_win(".........OOOO............")
+    assert_equal "YOU WIN!", board.evaluate_for_hv_win("..........XXXX........") 
+    assert_nil board.evaluate_for_hv_win("...................")
+  end 
+  
+  def test_it_evaluates_for_diagonal_win 
+    board = Board.new 
+    
+    assert_equal "COMPUTER WINS!", board.evaluate_for_diagonal_win([[".", ".","X", "O", "O", "O", "O"]])
+    assert_equal "YOU WIN!", board.evaluate_for_diagonal_win([[".", ".","O", "X", "X", "X", "X"]])
+    assert_equal "", board.evaluate_for_diagonal_win([[".", ".","X", "O", "O", ".", "O"]])
   end 
   
   def test_it_finds_win_in_string
