@@ -66,7 +66,7 @@ class Board
     end.join 
   end 
   
-  def evaluate_for_win(cell_value_string)
+  def evaluate_for_hv_win(cell_value_string)
     until cell_value_string.length == 0 do 
       slice = cell_value_string.slice!(0..6)
       if find_win_in_string(slice) != nil 
@@ -74,8 +74,10 @@ class Board
       end 
     end
   end 
-    
   
+  def evaluate_for_diagonal_win
+  end 
+
   def find_win_in_string(sliced_string)
     if sliced_string.include?("OOOO")
       "COMPUTER WINS!"
