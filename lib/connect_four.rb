@@ -1,6 +1,12 @@
-#runner file  
+#runner file 
 
-# game = ConnectFour.new(name_of_player)
+
+game = ConnectFour.new
+puts "Hello, player!  What's your name? >__"
+player = gets.chomp
+game.add_name(player) 
+
+# game = ConnectFour.new
   # would really like to play "Ballroom Blitz" by Sweet throughout the game!
 
 #Move sequence for player X
@@ -21,4 +27,6 @@
   
   # create strings for diagonal values 
   # run method evaluate_for_diagonal_win
+  
+# on move sequence for "O", if o_column returns nil, o_column again
   
