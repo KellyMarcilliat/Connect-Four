@@ -1,6 +1,13 @@
-#runner file  
+#runner file 
 
-# game = ConnectFour.new(name_of_player)
+
+game = ConnectFour.new
+puts "Hello, player!  What's your name? >__"
+player = gets.chomp.capitalize 
+game.add_name(player) 
+puts game.player_name
+
+# game = ConnectFour.new
   # would really like to play "Ballroom Blitz" by Sweet throughout the game!
 
 #Move sequence for player X
