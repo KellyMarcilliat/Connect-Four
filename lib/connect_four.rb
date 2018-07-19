@@ -3,9 +3,8 @@
 
 game = ConnectFour.new
 puts "Hello, player!  What's your name? >__"
-player = gets.chomp.capitalize 
+player = gets.chomp
 game.add_name(player) 
-puts game.player_name
 
 # game = ConnectFour.new
   # would really like to play "Ballroom Blitz" by Sweet throughout the game!
