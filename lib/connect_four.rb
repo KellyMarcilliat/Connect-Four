@@ -28,3 +28,5 @@ game.add_name(player)
   # create strings for diagonal values 
   # run method evaluate_for_diagonal_win
   
+# on move sequence for "O", if o_column returns nil, o_column again
+  
