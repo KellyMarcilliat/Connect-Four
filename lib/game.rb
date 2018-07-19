@@ -36,19 +36,12 @@ class Game
     end 
   end
   
-  def o_move
-    piece = Piece.new("X", o_column)
+  def o_move(o_choice)
+    piece = Piece.new("O", o_column)
     board.add_piece(piece)
     board.update_cell(piece)
     board.render_board
     board.print_board  
   end
 end 
-
-game = Game.new 
-p game.add_name("kelly")
-game.x_move("A")
-game.x_move("A")
-game.x_move("A")
-game.x_move("A")
 
