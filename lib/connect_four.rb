@@ -1,32 +1,64 @@
-#runner file 
+ require './lib/board'
+require './lib/piece'
+require './lib/game'
 
-
-game = ConnectFour.new
+game = Game.new 
+win = 0
 puts "Hello, player!  What's your name? >__"
 player = gets.chomp
 game.add_name(player) 
 
-# game = ConnectFour.new
-  # would really like to play "Ballroom Blitz" by Sweet throughout the game!
+puts "The purpose of the game is to achieve 4 consecutive pieces.  They can connect horizontally, vertically, or diagonally.  You will take turns with the computer with each of you placing one piece at a time.  The first to achieve 4 connected pieces wins."
+sleep(3)
 
-#Move sequence for player X
-  # puts "Please choose a column by typing "A, B, C, D, E, F, or G.  Remember, your piece will be placed immediately on top of all existing pieces in that column."
-  # x_column = gets.chomp[0].upcase
-  # piece = Piece.new("X",x_column)
-  # board.add_piece(piece_object) 
-  # call methods to update cell
-    # board.add_piece(piece_object)
-    # board.find_cell(piece_object)
-    
-# check for win will need to happen after every new piece is placed
-  # board.join_cell_values_by_row(board.cells) 
-  # board.evaluate_for_hv_win
+puts "Okay, #{game.player_name}, let's begin.  You get to go first."
+
+while win == 0 do 
+  puts "Please choose a column by typing A, B, C, D, E, F, or G.  Your piece will be placed immediately on top of all existing pieces in that column."
+
+  x_column = gets.chomp[0].upcase
+  # sleep(1)
+  game.x_move(x_column)
+ 
+
+  cell_value_string = game.board.join_cell_values_by_row(game.board.cells)
+  if game.board.evaluate_for_hv_win(cell_value_string) == "YOU WIN!"
+    puts game.board.evaluate_for_hv_win(cell_value_string)
+    win += 1
+  end
+
+  cell_value_string_transposed = game.board.join_cell_values_by_row(game.board.cells)
+  if game.board.evaluate_for_hv_win(cell_value_string_transposed) == "YOU WIN!" 
+    puts game.board.evaluate_for_hv_win(cell_value_string_transposed)
+    win += 1
+  end 
   
-  # board.join_cell_values_by_row(board.cells.transpose)
-  # run method evaluate_for_hv_win
+  if game.board.evaluate_for_diagonal_win(game.board.diagonals) == "YOU WIN!" 
+    puts evaluate_for_diagonal_win(game.board.diagonals)
+    win += 1
+  end 
   
-  # create strings for diagonal values 
-  # run method evaluate_for_diagonal_win
+  puts "Nicely done!  Now, the computer will place a piece."
+  sleep(2)
+  o_choice = game.o_column 
+  game.o_move(o_choice)
   
-# on move sequence for "O", if o_column returns nil, o_column again
+  cell_value_string = game.board.join_cell_values_by_row(game.board.cells)
+  if game.board.evaluate_for_hv_win(cell_value_string) == "YOU WIN!"
+    puts game.board.evaluate_for_hv_win(cell_value_string)
+    win += 1
+  end
+  
+  cell_value_string_transposed = game.board.join_cell_values_by_row(game.board.cells)
+  if game.board.evaluate_for_hv_win(cell_value_string_transposed) == "YOU WIN!" 
+    puts game.board.evaluate_for_hv_win(cell_value_string_transposed)
+    win += 1
+  end 
+  
+  if game.board.evaluate_for_diagonal_win(game.board.diagonals) == "YOU WIN!" 
+    puts evaluate_for_diagonal_win(game.board.diagonals)
+    win += 1
+  end
+end  
+
   

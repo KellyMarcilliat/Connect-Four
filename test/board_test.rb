@@ -124,6 +124,4 @@ class BoardTest < Minitest::Test
     
     assert_equal [".", ".", ".", ".",".", ".", "."], board.render_board[rand(0..5)] 
   end 
-  
-  
 end 
